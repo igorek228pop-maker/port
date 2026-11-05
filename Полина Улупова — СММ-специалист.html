@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Полина Улупова — СММ-специалист</title>
+<style>
+:root {
+  --sky-1: #cfe6fb;
+  --sky-2: #a9d0f2;
+  --ink: #1c1c1e;
+  --muted: #6e6e75;
+  --white: #ffffff;
+  --yellow: #ffe14d;
+  --pink: #ffb6d5;
+  --pink-deep: #ff6fa8;
+  --line: #e4ecf5;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--sky-1), var(--sky-2));
+  min-height: 100vh;
+  line-height: 1.5;
+  padding: env(safe-area-inset-top, 0px) 0 calc(110px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+}
+a { color: inherit; }
+.page { max-width: 1040px; margin: 0 auto; padding: 32px 18px; display: grid; gap: 22px; }
+
+/* window chrome */
+.win {
+  background: var(--white); border-radius: 18px; box-shadow: 0 14px 40px rgba(40, 80, 130, .18);
+  overflow: hidden; position: relative;
+}
+.bar {
+  display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f3f5f8; border-bottom: 1px solid var(--line);
+}
+.dots { display: flex; gap: 6px; }
+.dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+.dots i:nth-child(1) { background: #ff5f57; }
+.dots i:nth-child(2) { background: #febc2e; }
+.dots i:nth-child(3) { background: #28c840; }
+.url {
+  flex: 1; background: var(--white); border: 1px solid var(--line); border-radius: 8px;
+  font-size: 13px; color: var(--muted); padding: 4px 12px; text-align: center;
+}
+.body { padding: 26px; }
+
+/* hero */
+.hero .body { padding: 44px 30px 40px; text-align: center; position: relative; }
+.hero h1 {
+  margin: 0; font-size: clamp(2.8rem, 9vw, 6rem); font-weight: 900; letter-spacing: -.03em; line-height: .95;
+}
+.hero h1 .hl { background: var(--yellow); padding: 0 .12em; border-radius: 6px; }
+.tag {
+  position: absolute; background: var(--white); border-radius: 999px; padding: 8px 16px;
+  font-weight: 700; font-size: 14px; box-shadow: 0 6px 16px rgba(0,0,0,.12);
+}
+.t1 { top: 26px; left: 26px; transform: rotate(-4deg); }
+.t2 { top: 34px; right: 30px; transform: rotate(3deg); }
+.t3 { bottom: 26px; left: 42px; transform: rotate(2deg); }
+.role {
+  display: inline-block; margin: 18px 0 0; font-size: 1.25rem; font-weight: 700; color: var(--pink-deep);
+}
+.folder { position: absolute; width: 58px; height: 42px; background: var(--pink); border-radius: 8px; }
+.folder::before { content: ""; position: absolute; top: -8px; left: 0; width: 24px; height: 12px; background: var(--pink); border-radius: 6px 6px 0 0; }
+.f1 { bottom: 24px; right: 28px; transform: rotate(6deg); }
+.f2 { bottom: 28px; right: 96px; transform: rotate(-4deg); }
+
+/* grid */
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.grid .win.wide { grid-column: span 2; }
+h2 { margin: 0 0 14px; font-size: 1.35rem; font-weight: 800; }
+.label {
+  display: inline-block; background: var(--ink); color: var(--white); font-weight: 700; font-size: 13px;
+  padding: 5px 12px; border-radius: 8px; margin-bottom: 14px; transform: rotate(-2deg);
+}
+.about p { margin: 0 0 10px; font-size: 1.02rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.chip { background: #eef4fb; border-radius: 999px; padding: 6px 14px; font-weight: 600; font-size: 14px; }
+.chip.y { background: var(--yellow); }
+.chip.p { background: var(--pink); }
+
+/* contacts */
+.contact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.contact-list a {
+  display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600;
+  background: #f5f8fc; border-radius: 12px; padding: 12px 14px; transition: background .15s;
+}
+.contact-list a:hover { background: var(--yellow); }
+.ico { width: 34px; height: 34px; border-radius: 50%; background: var(--white); display: grid; place-items: center; font-size: 16px; box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+
+/* experience */
+.timeline { display: grid; gap: 12px; }
+.row {
+  display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; align-items: start;
+  background: #f5f8fc; border-radius: 14px; padding: 14px 16px; border-left: 5px solid var(--pink-deep);
+}
+.row:nth-child(2n) { border-left-color: #ffc53d; }
+.row:nth-child(3n) { border-left-color: #5ac8fa; }
+.row h3 { margin: 0; font-size: 1.02rem; font-weight: 800; }
+.row .org { margin: 0; color: var(--muted); font-size: 14px; }
+.row time { font-size: 13px; font-weight: 700; color: var(--muted); white-space: nowrap; padding-top: 3px; }
+.row p { grid-column: 1 / -1; margin: 4px 0 0; font-size: 14px; }
+
+/* services (rate packages) */
+.pkgs { display: grid; gap: 12px; }
+.pkg { border: 2px solid var(--line); border-radius: 14px; padding: 14px 16px; background: var(--white); }
+.pkg b { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+.pkg span { font-size: 14px; color: var(--muted); }
+.pkg.hot { border-color: var(--pink-deep); background: #fff5fa; }
+
+/* photo-like tiles */
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.tile { aspect-ratio: 1; border-radius: 14px; background: linear-gradient(135deg, var(--pink), #ffd6e7); position: relative; overflow: hidden; }
+.tile.b { background: linear-gradient(135deg, #bfe3ff, #e0f2ff); }
+.tile.y { background: linear-gradient(135deg, #ffe89a, #fff6cf); }
+.tile.g { background: linear-gradient(135deg, #cdf5e6, #eafff7); }
+.tile.v { background: linear-gradient(135deg, #d9d2ff, #efeaff); }
+.tile.r { background: linear-gradient(135deg, #ffd0c2, #ffece6); }
+.tile::after { content: "фото"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 13px; color: rgba(0,0,0,.35); font-weight: 700; }
+
+/* telegram */
+.feed .body { text-align: center; padding: 34px 26px; }
+.feed p { margin: 0 0 18px; color: var(--muted); }
+.btn {
+  display: inline-block; background: var(--ink); color: var(--white); font-weight: 800; text-decoration: none;
+  padding: 14px 26px; border-radius: 999px; box-shadow: 0 8px 18px rgba(0,0,0,.18); transition: transform .15s;
+}
+.btn:hover { transform: translateY(-2px); }
+
+/* dock */
+.dock {
+  position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 10;
+  display: flex; gap: 10px; background: rgba(255,255,255,.85); backdrop-filter: blur(10px);
+  padding: 10px 16px; border-radius: 22px; box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+.dock a {
+  width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; text-decoration: none; font-size: 20px;
+  background: #f5f8fc; transition: transform .15s;
+}
+.dock a:hover { transform: translateY(-4px) scale(1.06); }
+
+footer { text-align: center; color: var(--muted); font-size: 14px; padding-top: 6px; }
+
+.cases { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.case { background: #f5f8fc; border-radius: 16px; padding: 18px; }
+.case h3 { margin: 0 0 12px; font-size: 1.05rem; font-weight: 800; }
+.kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.kpi { background: var(--white); border: 2px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+.kpi b { display: block; font-size: 1.25rem; font-weight: 900; }
+.kpi span { font-size: 13px; color: var(--muted); }
+.kpi.hl { background: var(--yellow); border-color: var(--ink); }
+.note { font-size: 13px; color: var(--muted); margin: 14px 0 0; }
+
+.proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; text-align: left; margin-bottom: 24px; }
+.proj { margin: 0; background: #f5f8fc; border-radius: 16px; overflow: hidden; border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.proj img { display: block; width: 100%; height: auto; }
+.proj figcaption { padding: 12px 14px; display: grid; gap: 4px; }
+.proj b { font-size: 1.05rem; font-weight: 900; color: var(--ink); }
+.proj span { font-size: 14px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid .win.wide { grid-column: auto; }
+  .tiles { grid-template-columns: repeat(2, 1fr); }
+  .tag { display: none; }
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <section class="win hero" id="top">
+    <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">portfolio — полина улупова</div></div>
+    <div class="body">
+      <span class="tag t1">📸 контент</span>
+      <span class="tag t2">🎬 видео</span>
+      <span class="tag t3">✍️ тексты</span>
+      <span class="folder f1" aria-hidden="true"></span>
+      <span class="folder f2" aria-hidden="true"></span>
+      <h1>Полина<br>Улупова</h1>
+      <span class="role">СММ-специалист · контент для бизнеса</span>
+    </div>
+  </section>
+
+  <div class="grid">
+
+    <section class="win">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">about</div></div>
+      <div class="body about">
+        <span class="label">Обо мне</span>
+        <p>Привет, я Полина, мне 21. С 16 лет веду аккаунты бьюти-мастеров, в 18 уже монтировала сюжеты для «России 24».</p>
+        <p>Люблю искать идеи там, где другие видят обычные вещи, экспериментировать с форматами и создавать контент со смыслом.</p>
+        <div class="chips">
+          <span class="chip y">В SMM с 16 лет</span>
+          <span class="chip">Открыта к крутым проектам</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="win">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">contact</div></div>
+      <div class="body">
+        <span class="label">Контакты</span>
+        <ul class="contact-list">
+          <li><a href="tel:+79173131966"><span class="ico">📞</span>8 (917) 313-19-66</a></li>
+          <li><a href="mailto:apoliysu@gmail.com"><span class="ico">✉️</span>apoliysu@gmail.com</a></li>
+          
+          <li><a href="https://t.me/apoliys" target="_blank" rel="noopener"><span class="ico">✍️</span>@apoliys — Telegram для сотрудничества</a></li>
+          <li><a href="#top"><span class="ico">📍</span>Саратов</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="win wide">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">experience</div></div>
+      <div class="body">
+        <span class="label">Опыт работы</span>
+        <div class="timeline">
+          <div class="row">
+            <div><h3>BRAZA BRO</h3><p class="org">Магазин одежды и обуви</p></div>
+            <time>05.04.2024 — 27.04.2024</time>
+            <p>Разработка и реализация контент-стратегии. Создание reels.</p>
+          </div>
+          <div class="row">
+            <div><h3>CENTER</h3><p class="org">Организация мероприятий</p></div>
+            <time>10.10.2024 — 22.11.2024</time>
+            <p>Сотрудничество с командой проекта. Создание контента для мероприятий.</p>
+          </div>
+          <div class="row">
+            <div><h3>CYBER KING</h3><p class="org">Компьютерный клуб</p></div>
+            <time>01.09.2024 — 15.02.2025</time>
+            <p>Полное ведение соцсетей: стратегия, контент, съёмка, монтаж.</p>
+          </div>
+          <div class="row">
+            <div><h3>ПИЛАТЕС</h3><p class="org">Наставничество для тренера</p></div>
+            <time>31.03.2025 — 15.05.2025</time>
+            <p>Обучила тренера съёмке, монтажу и контент-планированию с нуля. Ученица выполняла работы самостоятельно.</p>
+          </div>
+          <div class="row">
+            <div><h3>BRIGHT MAN</h3><p class="org">Ателье мужской одежды</p></div>
+            <time>01.08.2025 — 29.08.2025</time>
+            <p>Ведение соцсетей и создание контента для ателье. Работа с визуалом и текстами в премиальном сегменте.</p>
+          </div>
+          <div class="row">
+            <div><h3>СГУщёнка</h3><p class="org">Студенческий журнал</p></div>
+            <time>Тексты и кадр</time>
+            <p>Тексты и репортажи: «Волшебное колечко», «Хореографическое направление», цикл о Саратове. Телепроект «Мне нравится».</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="win">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">services</div></div>
+      <div class="body">
+        <span class="label">Что делаю</span>
+        <div class="pkgs">
+          <div class="pkg hot"><b>Стратегия и контент-план</b><span>Цели, форматы, рубрики, тексты</span></div>
+          <div class="pkg"><b>Видео и Reels</b><span>Монтаж под задачи: вовлечение, продажи, узнаваемость</span></div>
+          <div class="pkg"><b>Аналитика и рост</b><span>Метрики, выводы и фиксация результата</span></div>
+          <div class="pkg"><b>Визуал и оформление</b><span>Стиль ленты, сторис и рилсов в одном ключе</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="win">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">skills</div></div>
+      <div class="body">
+        <span class="label">Софт-скиллы</span>
+        <div class="chips">
+          <span class="chip p">Креативность</span>
+          <span class="chip y">Коммуникабельность</span>
+          <span class="chip">Адаптивность</span>
+        </div>
+        <span class="label" style="margin-top:22px">Инструменты</span>
+        <div class="chips"><span class="chip">Canva</span><span class="chip">CapCut</span><span class="chip">Picsart</span><span class="chip">AI</span></div>
+        <h2 style="margin-top:22px">Образование</h2>
+        <p style="margin:0">СГУ им. Чернышевского<br><span style="color:var(--muted)">направление: журналистика</span></p>
+      </div>
+    </section>
+
+    <section class="win wide">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">россия 24</div></div>
+      <div class="body">
+        <span class="label">Интервью и сюжеты «России 24»</span>
+        <div class="timeline">
+          <div class="row"><div><h3>V Ермаковский фестиваль</h3><p class="org">Экскурсии с «Оживающим Саратовом»</p></div><a href="https://vk.ru/wall-45669865_12718" target="_blank" rel="noopener" class="chip y" style="text-decoration:none">Смотреть →</a></div>
+          <div class="row"><div><h3>Интервью с космическим инженером</h3><p class="org">Марат Айрапетян</p></div><a href="https://vk.ru/wall-45669865_12530" target="_blank" rel="noopener" class="chip y" style="text-decoration:none">Смотреть →</a></div>
+          <div class="row"><div><h3>Сюжет про Александра Чижова</h3><p class="org">И его команду</p></div><a href="https://vk.ru/wall-45669865_12281" target="_blank" rel="noopener" class="chip y" style="text-decoration:none">Смотреть →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="win wide">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">tiktok analytics</div></div>
+      <div class="body">
+        <span class="label">Результаты в TikTok</span>
+        <div class="cases">
+          <div class="case">
+            <h3><a href="https://vt.tiktok.com/ZSpNqHr9B/" target="_blank" rel="noopener" style="color:inherit">Ролик от 11 ноября 2025 ↗</a></h3>
+            <div class="kpis">
+              <div class="kpi hl"><b>1,06 млн</b><span>просмотров</span></div>
+              <div class="kpi"><b>92 тыс.</b><span>лайков</span></div>
+              <div class="kpi"><b>8 391</b><span>сохранений</span></div>
+              <div class="kpi"><b>5 644</b><span>репостов</span></div>
+              <div class="kpi"><b>64,2%</b><span>досмотров до конца</span></div>
+              <div class="kpi"><b>1 078</b><span>новых подписчиков</span></div>
+            </div>
+          </div>
+          <div class="case">
+            <h3><a href="https://vt.tiktok.com/ZSpNqrVFr/" target="_blank" rel="noopener" style="color:inherit">Ролик от 14 ноября 2025 ↗</a></h3>
+            <div class="kpis">
+              <div class="kpi hl"><b>894 тыс.</b><span>просмотров</span></div>
+              <div class="kpi"><b>78 тыс.</b><span>лайков</span></div>
+              <div class="kpi"><b>7 739</b><span>сохранений</span></div>
+              <div class="kpi"><b>4 940</b><span>репостов</span></div>
+              <div class="kpi"><b>53,6%</b><span>досмотров до конца</span></div>
+              <div class="kpi"><b>700</b><span>новых подписчиков</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="note">Данные из TikTok Studio, обновлено 12.02.2026.</p>
+      </div>
+    </section>
+
+    <section class="win wide feed">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url">my feed</div></div>
+      <div class="body">
+        <span class="label">Кейсы и примеры</span>
+        <div class="proj-grid">
+          <figure class="proj"><img src="/_blob/aa51c9ba6d50879a8f1376756ca59d3c" alt="Ресторан-бар The Сад"><figcaption><b>The Сад</b><span>Ресторан-бар, работала с апреля по ноябрь 2026. Атмосфера летней террасы и живые ролики.</span></figcaption></figure>
+          <figure class="proj"><img src="/_blob/93dc0e15acc1274ae45b2c42aeb08c12" alt="Корейская кухня Саранг"><figcaption><b>Саранг</b><span>Корейская кухня. Веду с сентября 2026: подача блюд, команда в кадре.</span></figcaption></figure>
+          <figure class="proj"><img src="/_blob/64274a27f49316d965989c7ff3e91e0e" alt="Японские рестораны Япошка"><figcaption><b>Япошка</b><span>Сеть японских ресторанов. Работаю с осени 2026: разговорные ролики с поварами о роллах, тренды и юмор.</span></figcaption></figure>
+          <figure class="proj"><img src="/_blob/f297d5f7d7f676bf05cc155a7dcaa705" alt="Личный блог"><figcaption><b>Личный блог</b><span>Этим летом вела свой блог: единый стиль ленты, сторис и рилсов.</span></figcaption></figure>
+        </div>
+        <p>За каждым интересным проектом стоит идея. Буду рада поработать над вашей :)</p>
+        
+      </div>
+    </section>
+
+  </div>
+
+  <footer>© Полина Улупова · Саратов</footer>
+
+</main>
+
+<nav class="dock" aria-label="Контакты">
+  
+  <a href="mailto:apoliysu@gmail.com" title="Email">✉️</a>
+  <a href="tel:+79173131966" title="Телефон">📞</a>
+  <a href="#top" title="Наверх">⬆️</a>
+</nav>
+
+</body>
+</html>
